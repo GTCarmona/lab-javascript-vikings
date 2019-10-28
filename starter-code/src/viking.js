@@ -69,34 +69,40 @@ class War {
         this.saxonArmy.push(saxon);
     }
 
-    vikingAttack() {
-        let saxonArmyRandom = Math.floor(this.saxonArmy.length*Math.random());
-        let randomSaxon = this.saxonArmy[saxonArmyRandom];
 
-        let vikingArmyRandom = Math.floor(this.vikingArmy.length*Math.random());
-        let randomViking = this.vikingArmy[vikingArmyRandom];
+    vikingAttack() {     
 
-        let attack = randomSaxon.receiveDamage(randomViking.strength);
+        // Random Saxon index
+        const randomSaxonIndex = Math.floor(this.saxonArmy.length*Math.random());
+        // Rnadom Saxon that was selected
+        const randomSaxon = this.saxonArmy[randomSaxonIndex];
 
+        const randomVikingIndex = Math.floor(this.vikingArmy.length*Math.random());
+        const randomViking = this.vikingArmy[randomVikingIndex];
+
+        
+        const attack = randomSaxon.receiveDamage(randomViking.strength);
+
+        // remove the selected saxon if it is dead
         if (randomSaxon.health <= 0) {
-        this.saxonArmy.splice(saxonArmyRandom, 1)};
+        this.saxonArmy.splice(randomSaxonIndex, 1)};
 
         return attack;
     }
 
     saxonAttack() {
-        let saxonArmyRandom = Math.floor(this.saxonArmy.length*Math.random());
-        let randomSaxon = this.saxonArmy[saxonArmyRandom];
+        const randomSaxonIndex = Math.floor(this.saxonArmy.length*Math.random());
+        const randomSaxon = this.saxonArmy[randomSaxonIndex];
 
-        let vikingArmyRandom = Math.floor(this.vikingArmy.length*Math.random());
-        let randomViking = this.vikingArmy[vikingArmyRandom];
+        const randomVikingIndex = Math.floor(this.vikingArmy.length*Math.random());
+        const randomViking = this.vikingArmy[randomVikingIndex];
 
-        let attack = randomViking.receiveDamage(randomSaxon.strength);
+        const attack = randomViking.receiveDamage(randomSaxon.strength);
 
         if (randomViking.health <= 0) {
-        this.vikingArmy.splice(vikingArmyRandom, 1)};
-
-        return attack;
+        this.vikingArmy.splice(randomVikingIndex, 1)};
+        
+        return attack
     }
 
     showStatus() {
